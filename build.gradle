@@ -1,0 +1,37 @@
+//plugins {
+//    id 'java'
+//}
+
+apply plugin:'java'
+
+group 'com.sharp.freezeo'
+version '1.0-SNAPSHOT'
+
+
+sourceCompatibility = 1.8
+
+repositories {
+    maven { url "http://172.17.0.59:8081/nexus/content/groups/public" }
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+    maven { url "http://dl.bintray.com/cjstehno/public" }
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile('org.postgresql:postgresql:42.1.4')
+    compile('com.microsoft.sqlserver:sqljdbc4:4.0')
+    compile('com.alibaba:druid:1.1.12')
+    compile('org.nutz:nutz:1.r.66')
+    compile('commons-io:commons-io:2.6')
+}
+
+jar {
+    manifest {
+        attributes(
+                "Manifest-Version": 1.1,
+                "Main-Class": "com.sharp.freezeo.FreezeoMain")
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
