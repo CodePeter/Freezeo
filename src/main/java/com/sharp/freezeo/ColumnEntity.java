@@ -1,5 +1,7 @@
 package com.sharp.freezeo;
 
+import com.sharp.freezeo.constants.FreezeoConstant;
+
 public class ColumnEntity {
 
     private String memeberName;
@@ -9,7 +11,7 @@ public class ColumnEntity {
     private String columnType;
 
     public String getMemeberName() {
-        return Table2PojoUtils.PojoName("_[a-z]", columnName, FormatName.MethodName, 0);
+        return Table2PojoUtils.PojoName(FreezeoConstant.REGEX, columnName, FormatName.MethodName, 0);
     }
 
     public void setMemeberName(String memeberName) {
@@ -17,7 +19,7 @@ public class ColumnEntity {
     }
 
     public String getMethodName() {
-        return Table2PojoUtils.PojoName("_[a-z]", columnName, FormatName.MemberName, 0);
+        return Table2PojoUtils.PojoName(FreezeoConstant.REGEX, columnName, FormatName.MemberName, 0);
     }
 
     public void setMethodName(String methodName) {

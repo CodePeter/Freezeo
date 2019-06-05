@@ -1,26 +1,31 @@
 package com.sharp.freezeo;
 
+import com.sharp.freezeo.constants.FreezeoConstant;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TableInfo {
+
     public static Connection conn;
 
-    static {
-        try {
-            conn = DriverManager.getConnection("jdbc:postgresql://172.17.5.21:5432/xuexifang?prepareThreshold=0", "web_xuexifang_user", "A4215FD6-1FBF-4EEB-A91D-4F2073701FDA");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public static void getPgSqlConnection(String url, String username, String password) throws SQLException {
+//        conn = DriverManager.getConnection("jdbc:postgresql://172.17.5.21:5432/xuexifang?prepareThreshold=0", "web_xuexifang_user", "A4215FD6-1FBF-4EEB-A91D-4F2073701FDA");
+        conn = DriverManager.getConnection(url, username, password);
     }
 
-    public static TableEntity transferTable2Pojo(String tableName) throws SQLException {
+    public static void getSqlServerConnection(String url, String username, String password) throws SQLException {
+//        conn = DriverManager.getConnection("jdbc:sqlserver://175.63.100.235:1433;DatabaseName=CampusRD2012", "qa", "qa@123");
+        conn = DriverManager.getConnection(url, username, password);
+    }
+
+    public static TableEntity transferTable2Pojo(String dbName, String tableName, int startPojo) throws SQLException {
         DatabaseMetaData metaData = DbInfo.conn.getMetaData();
-        ResultSet set = metaData.getColumns("xuexifang", "%", tableName, "%");
+        ResultSet set = metaData.getColumns(dbName, "%", tableName, "%");
         TableEntity tableEntity = new TableEntity();
         tableEntity.setTableName(tableName);
-        tableEntity.setPojoName(Table2PojoUtils.PojoName("_[a-z]", tableName, FormatName.PojoName, 1));
+        tableEntity.setPojoName(Table2PojoUtils.PojoName(FreezeoConstant.REGEX, tableName, FormatName.PojoName, startPojo));
         List<ColumnEntity> columnEntities = new ArrayList<>();
         while (set.next()) {
 
@@ -44,29 +49,31 @@ public class TableInfo {
     }
 
     public static String getMemberType(String columnType, int digits) {
-        if(columnType.equals("serial")) {
+        if (columnType.equals("serial") || columnType.equals("bigint")) {
             return "Long";
         }
-        if(columnType.equals("varchar")) {
+        if (columnType.equals("char") || columnType.equals("varchar") || columnType.equals("nvarchar")
+                || columnType.equals("text") || columnType.equals("ntext")) {
             return "String";
         }
-        if(columnType.equals("numeric") && digits > 0) {
+        if (columnType.equals("numeric") && digits > 0) {
             return "BigDecimal";
         }
-        if(columnType.equals("numeric") && digits == 0) {
+        if (columnType.equals("numeric") && digits == 0) {
             return "Integer";
         }
-        if(columnType.equals("int2") || columnType.equals("int4")) {
+        if (columnType.equals("tinyint") || columnType.equals("int") || columnType.equals("int2") || columnType.equals("int4")) {
             return "Integer";
         }
-        if(columnType.equals("timestamp")) {
+        if (columnType.equals("timestamp") || columnType.equals("datetime")) {
             return "Date";
         }
         return "";
     }
 
     public static void main(String[] args) throws SQLException {
-        TableInfo.transferTable2Pojo("t_product");
+        TableInfo.getSqlServerConnection("jdbc:sqlserver://175.63.100.235:1433;DatabaseName=CampusRD2012", "qa", "qa@123");
+        TableInfo.transferTable2Pojo("CampusRD2012","Job_position",0);
     }
 
 }

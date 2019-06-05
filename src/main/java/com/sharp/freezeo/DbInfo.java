@@ -25,7 +25,8 @@ public class DbInfo {
 
     static {
         try {
-            conn = DriverManager.getConnection("jdbc:postgresql://172.17.5.21:5432/xuexifang?prepareThreshold=0", "web_xuexifang_user", "A4215FD6-1FBF-4EEB-A91D-4F2073701FDA");
+//            conn = DriverManager.getConnection("jdbc:postgresql://172.17.5.21:5432/xuexifang?prepareThreshold=0", "web_xuexifang_user", "A4215FD6-1FBF-4EEB-A91D-4F2073701FDA");
+            conn = DriverManager.getConnection("jdbc:sqlserver://175.63.100.235:1433;DatabaseName=CampusRD2012", "qa", "qa@123");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -33,7 +34,7 @@ public class DbInfo {
 
     public static void main(String[] args) throws SQLException {
         DatabaseMetaData metaData = DbInfo.conn.getMetaData();
-        ResultSet set = metaData.getColumns("xuexifang", "%", "t_product", "%");
+        ResultSet set = metaData.getColumns("CampusRD2012", "%", "Job_position", "%");
         while (set.next()) {
             String columnName = set.getString("COLUMN_NAME");
             String columnType = set.getString("TYPE_NAME");

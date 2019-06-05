@@ -66,18 +66,17 @@ public class Table2PojoUtils {
 //    }
 
     public static void main(String[] args) {
-//        String tableName = Table2PojoUtils.PojoName("_[a-z]","t_product_detail",1);
-//        System.out.println(tableName);
-//        String columnName = Table2PojoUtils.PojoName("_[a-z]","product_id",0);
-//        System.out.println(columnName);
-        //Product
-        String pojoName = Table2PojoUtils.PojoName("_[a-z]","t_product",FormatName.PojoName, 1);
-        System.out.println(pojoName);
-        //productId
-        String methodName = Table2PojoUtils.PojoName("_[a-z]","product_id",FormatName.MemberName, 0);
-        System.out.println(methodName);
-        //ProductId
-        String memberName = Table2PojoUtils.PojoName("_[a-z]","product_id",FormatName.MethodName, 0);
-        System.out.println(memberName);
+//        //Product
+//        String pojoName = Table2PojoUtils.PojoName("_[a-z]","t_product",FormatName.PojoName, 1);
+//        System.out.println(pojoName);
+//        //productId
+//        String methodName = Table2PojoUtils.PojoName("_[a-z]","product_id",FormatName.MemberName, 0);
+//        System.out.println(methodName);
+//        //ProductId
+//        String memberName = Table2PojoUtils.PojoName("_[a-z]","product_id",FormatName.MethodName, 0);
+//        System.out.println(memberName);
+        //NeedMajor needMajor
+        String needMajor = Table2PojoUtils.PojoName("_([a-z]|[A-Z])","NeedMajor",FormatName.MethodName, 0);
+        System.out.println(needMajor);
     }
 }
