@@ -5,7 +5,7 @@
 apply plugin:'java'
 
 group 'com.sharp.freezeo'
-version '1.0-SNAPSHOT'
+version '1.1-SNAPSHOT'
 
 
 sourceCompatibility = 1.8
@@ -24,6 +24,7 @@ dependencies {
     compile('com.alibaba:druid:1.1.12')
     compile('org.nutz:nutz:1.r.66')
     compile('commons-io:commons-io:2.6')
+    compile("org.apache.commons:commons-pool2:2.6.2")
 }
 
 jar {
