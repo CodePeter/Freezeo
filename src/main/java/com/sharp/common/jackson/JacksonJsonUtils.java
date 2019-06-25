@@ -22,7 +22,6 @@ import java.util.TimeZone;
  * <p />
  * 大部分json输出格式上的问题，可以通过添加Jackson相关注解解决。
  *
- * @author KONG Xiangxin
  */
 public class JacksonJsonUtils {
 
