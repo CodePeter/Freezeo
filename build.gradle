@@ -10,6 +10,10 @@ version '1.1-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
+ext {
+    commonVersion="3.4.14.RELEASE"
+}
+
 repositories {
     maven { url "http://172.17.0.59:8081/nexus/content/groups/public" }
     maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
@@ -25,6 +29,9 @@ dependencies {
     compile('org.nutz:nutz:1.r.66')
     compile('commons-io:commons-io:2.6')
     compile("org.apache.commons:commons-pool2:2.6.2")
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.9'
+    compile "com.zhaopin:common-http:${commonVersion}"
+    compile "it.sauronsoftware:jave:1.0.2"
 }
 
 jar {
