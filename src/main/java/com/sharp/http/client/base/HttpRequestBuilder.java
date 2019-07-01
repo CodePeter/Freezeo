@@ -1,6 +1,5 @@
 package com.sharp.http.client.base;
 
-import com.zhaopin.common3.http.HttpUtils;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpRequestBase;
 

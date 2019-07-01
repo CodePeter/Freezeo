@@ -1,7 +1,5 @@
 package com.sharp.http.client.base;
 
-import com.zhaopin.common3.http.builder.HttpRequestInfo;
-import com.zhaopin.common3.http.executor.HttpResponseInfo;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.CloseableHttpClient;
