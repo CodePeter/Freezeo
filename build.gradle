@@ -1,4 +1,5 @@
-apply plugin:'java'
+apply plugin: 'java'
+//apply plugin: 'templates'
 
 group 'com.sharp.freezeo'
 version '1.1-SNAPSHOT'
@@ -7,12 +8,46 @@ version '1.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 ext {
-    commonVersion="3.4.14.RELEASE"
+    commonVersion = "3.4.14.RELEASE"
 }
+
+sourceSets {
+    main {
+        java { srcDirs = ['src/main/java'] }
+        resources { srcDirs = ['src/main/resources', 'src/main/java'] }
+        java.outputDir = file('cc/production/classes')
+        output.resourcesDir = file('cc/production/classes')
+
+    }
+    test {
+        java { srcDirs = ['src/test/java'] }
+        resources { srcDirs = ['src/test/resources'] }
+    }
+
+
+//    sourceSets.main.resources.srcDirs = sourceSets.main.java.srcDirs
+}
+
+
+
+//task copyProperties(type: Copy) {
+//    copy {
+//        from ('src/main/resources')
+//        into "cc/production"
+//    }
+//}
+
+//processResources {
+//    from(sourceSets.main.java.srcDirs){
+//        include '**/*.properties'
+//    }
+//}
+
 
 repositories {
     maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -27,10 +62,19 @@ dependencies {
     compile('com.alibaba:druid:1.1.12')
     compile('org.nutz:nutz:1.r.66')
     compile('commons-io:commons-io:2.6')
-    compile("org.apache.commons:commons-pool2:2.6.2")
-    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.9'
-    compile "it.sauronsoftware:jave:1.0.2"
-    compile group: 'com.google.guava', name: 'guava', version: '28.0-jre'
+    compile('org.apache.commons:commons-pool2:2.6.2')
+    compile('org.apache.httpcomponents:httpclient:4.5.9')
+//    compile('it.sauronsoftware:jave:1.0.2')
+    compile('com.google.guava:guava:28.0-jre')
+    compile('com.alibaba:fastjson:1.2.49')
+    compile('com.fasterxml.jackson.core:jackson-databind:2.9.8')
+//    compile group: 'gradle.plugin.com.redpillanalytics', name: 'gradle-plugin-template', version: '0.1.2'
+//    compile group: 'org.codehaus.groovy', name: 'groovy-templates', version: '2.5.7'
+    //gradle sdk
+//    compile gradleApi()
+    //groovy sdk
+//    compile localGroovy()
+    compile 'gradle-templates:gradle-templates:1.5'
 }
 
 jar {

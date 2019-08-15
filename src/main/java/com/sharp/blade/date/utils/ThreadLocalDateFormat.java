@@ -1,6 +1,5 @@
 package com.sharp.blade.date.utils;
 
-import com.sun.istack.internal.NotNull;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,7 +9,7 @@ public class ThreadLocalDateFormat {
 
     private final ThreadLocal<SimpleDateFormat> THREAD_LOCAL;
 
-    public ThreadLocalDateFormat(@NotNull final String format) {
+    public ThreadLocalDateFormat(final String format) {
         THREAD_LOCAL = new ThreadLocal<SimpleDateFormat>() {
             @Override
             protected SimpleDateFormat initialValue() {
@@ -19,11 +18,11 @@ public class ThreadLocalDateFormat {
         };
     }
 
-    public String format(@NotNull Date date) {
+    public String format(Date date) {
         return THREAD_LOCAL.get().format(date);
     }
 
-    public Date parse(@NotNull String date) throws ParseException {
+    public Date parse(String date) throws ParseException {
         return THREAD_LOCAL.get().parse(date);
     }
 
