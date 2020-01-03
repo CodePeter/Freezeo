@@ -15,8 +15,8 @@ sourceSets {
     main {
         java { srcDirs = ['src/main/java'] }
         resources { srcDirs = ['src/main/resources', 'src/main/java'] }
-        java.outputDir = file('cc/production/classes')
-        output.resourcesDir = file('cc/production/classes')
+//        java.outputDir = file('cc/production/classes')
+//        output.resourcesDir = file('cc/production/classes')
 
     }
     test {
@@ -74,7 +74,7 @@ dependencies {
 //    compile gradleApi()
     //groovy sdk
 //    compile localGroovy()
-    compile 'gradle-templates:gradle-templates:1.5'
+//    compile 'gradle-templates:gradle-templates:1.5'
 }
 
 jar {
